@@ -1,0 +1,11 @@
+// create an audio context and hook up the video element as the source
+var audioCtx = new AudioContext();
+var source = audioCtx.createMediaElementSource(document.getElementsByTagName('video')[0]);
+
+// create a gain node
+var gainNode = audioCtx.createGain();
+gainNode.gain.value = 4; // double the volume
+source.connect(gainNode);
+
+// connect the gain node to an output destination
+gainNode.connect(audioCtx.destination);
